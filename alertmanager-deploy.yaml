@@ -29,11 +29,6 @@ spec:
         - name: config-volume-prometheus
           mountPath: /etc/prometheus
 
-      # - name: emailrelay - we are now using mail.aws.axsy.com - delete this section layer on
-      #   image: namshi/smtp
-      #   ports:
-      #   - name: smtp
-      #     containerPort: 25
 
       # Volumes and config maps
       volumes:

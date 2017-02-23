@@ -60,9 +60,6 @@ data:
       - match:
           severity: critical
         receiver: ops-email-slack
-        # receiver: alerta
-
-
 
 
 
@@ -120,7 +117,7 @@ data:
 
               Description: '{{ range .Alerts }}{{ .Annotations.description }} {{ end }}'
 
-              RunBook: 'https://confluence.aws.axsy.com/display/OP/{{ .GroupLabels.alertname }}'
+              RunBook: 'https://confluence.aws.axsy.com/display/OP/{{ $GroupLabels.alertname }}'
 
     # End ops-email-slack 
 
@@ -128,8 +125,8 @@ data:
     # Begin alerta
     - name: "alerta"
       webhook_configs:
-      - url: 'http://10.1.12.56:8181/api/webhooks/prometheus'
-      # - url: 'http://100.64.37.4:8181/api/webhooks/prometheus'
+      # - url: 'http://10.1.11.222:8181/webhooks/prometheus'
+      - url: 'http://100.64.10.5:8181/webhooks/prometheus'
         send_resolved: true
 
     # End alerta
