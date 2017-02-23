@@ -7,11 +7,11 @@ data:
   alertmanager.yml: |-
 
     global:
-      smtp_smarthost: 'mail.aws.axsy.com:25'
-      smtp_from: 'alertmanager@axsy.com'
+      smtp_smarthost: 'some.mail.host:25'
+      smtp_from: 'alertmanager@some.company.com'
 
       # Define our slack api URL here
-      slack_api_url: 'https://hooks.slack.com/services/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'
+      slack_api_url: 'https://hooks.slack.com/services/XXXCCVVBBBBRRRRR'
 
 
     # The directory from which notification templates are read.
@@ -78,7 +78,7 @@ data:
     # Begin ops-email
     - name: 'ops-email'
       email_configs:
-      - to: 'virantha.mendis@axsy.com'
+      - to: 'virantha.mendis@some.company.com'
         require_tls: false
         send_resolved: true
     
@@ -89,14 +89,14 @@ data:
     - name: 'ops-slack'
       slack_configs:
       - send_resolved: true
-        username: 'Alertmanager@axsy.com'
+        username: 'Alertmanager@some.company.com'
         channel: '#virantha-k8s-tests'
         text: >-
               Summary: '{{ range .Alerts }}{{ .Annotations.summary }} {{ end }}'
 
               Description: '{{ range .Alerts }}{{ .Annotations.description }} {{ end }}'
 
-              RunBook: 'https://confluence.aws.axsy.com/display/OP/{{ .GroupLabels.alertname }}'
+              RunBook: 'https://confluence.some.company.com/display/OP/{{ .GroupLabels.alertname }}'
 
     # End ops-slack 
 
@@ -104,20 +104,24 @@ data:
     # Begin ops-email-slack 
     - name: 'ops-email-slack'
       email_configs:
-      - to: 'virantha.mendis@axsy.com'
+      - to: 'virantha.mendis@some.company.com'
         require_tls: false
         send_resolved: true
 
       slack_configs:
       - send_resolved: true
-        username: 'Alertmanager@axsy.com'
+        username: 'Alertmanager@some.company.com'
         channel: '#virantha-k8s-tests'
         text: >-
               Summary: '{{ range .Alerts }}{{ .Annotations.summary }} {{ end }}'
 
               Description: '{{ range .Alerts }}{{ .Annotations.description }} {{ end }}'
 
+<<<<<<< HEAD
               RunBook: 'https://confluence.aws.axsy.com/display/OP/{{ $GroupLabels.alertname }}'
+=======
+              RunBook: 'https://confluence.some.company.com/display/OP/{{ .GroupLabels.alertname }}'
+>>>>>>> 829923172e035a33181f01c25f1d730d3bbc97ff
 
     # End ops-email-slack 
 
